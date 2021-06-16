@@ -8,3 +8,7 @@ CObjectSuper::CObjectSuper()
 CObjectSuper::~CObjectSuper()
 {
 }
+
+void CObjectSuper::Draw()
+{
+}

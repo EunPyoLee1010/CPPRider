@@ -141,11 +141,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackBoardSuper.h" />
+    <ClInclude Include="FrontBoardSuper.h" />
     <ClInclude Include="ObjectSuper.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="UpdateEngineSuper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackBoardSuper.cpp" />
+    <ClCompile Include="FrontBoardSuper.cpp" />
     <ClCompile Include="ObjectSuper.cpp" />
+    <ClCompile Include="UpdateEngineSuper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

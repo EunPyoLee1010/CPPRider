@@ -1,6 +1,11 @@
-﻿#include <iostream>
+﻿#include "stdafx.h"
+#include "MainGameLoop.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	GameLoop()->Initialize();
+
+	GameLoop()->StartLoop();
+
+	GameLoop()->Terminate();
 }

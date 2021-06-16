@@ -142,9 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="KeyInputEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainGameLoop.cpp" />
+    <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KeyInputEngine.h" />
+    <ClInclude Include="MainGameLoop.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
