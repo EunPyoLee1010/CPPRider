@@ -1,13 +1,12 @@
 #pragma once
 #include "UpdateEngineSuper.h"
-class CCameraUpdateEngine : public CUpdateEngineSuper
+class CStatusUpdateEngine : public CUpdateEngineSuper
 {
 public:
-	CCameraUpdateEngine();
-	~CCameraUpdateEngine();
+	CStatusUpdateEngine();
+	~CStatusUpdateEngine();
 
 	virtual void Update(CKartObject* obj);
 private:
-
 };
 

@@ -6,6 +6,11 @@ public:
 	~CObjectSuper();
 
 	virtual void Draw();
+
+	int posX;
+	int posY;
+
+	void Move(double vel, int angle);
 private:
 
 };

@@ -6,7 +6,7 @@ public:
 	CCollisionUpdateEngine();
 	~CCollisionUpdateEngine();
 
-	virtual void Update();
+	virtual void Update(CKartObject* obj);
 
 private:
 

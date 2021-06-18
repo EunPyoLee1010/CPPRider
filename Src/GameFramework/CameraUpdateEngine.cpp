@@ -8,6 +8,6 @@ CCameraUpdateEngine::~CCameraUpdateEngine()
 {
 }
 
-void CCameraUpdateEngine::Update()
+void CCameraUpdateEngine::Update(CKartObject* obj)
 {
 }

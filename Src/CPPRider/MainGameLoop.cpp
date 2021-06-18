@@ -20,22 +20,25 @@ void CMainGameLoop::Initialize()
 	GDI()->CreateGDI();
 
 	updateEngineList.push_back(new CCollisionUpdateEngine());
-	updateEngineList.push_back(new CVectorUpdateEngine());
+	updateEngineList.push_back(new CStatusUpdateEngine());
 	updateEngineList.push_back(new CCameraUpdateEngine());
+
 
 	backboardList.push_back(new CMapObject());
 
-	CKartObject otherKart1;
-	CKartObject otherKart2;
-	CKartObject otherKart3;
-	CKartObject otherKart4;
+	CKartObject otherKarts[4];
+	int x = 100;
+	for (int i = 0; i < 4; i++)
+	{
+		int intervel = 200;
+		otherKarts[i].posX = x + intervel * i;
+		otherKarts[i].posY = 250;
+		objList.push_back(&otherKarts[i]);
+	}
 
+	myKart.posX = 250;
+	myKart.posY = 250;
 	objList.push_back(&myKart);
-	objList.push_back(&otherKart1);
-	objList.push_back(&otherKart2);
-	objList.push_back(&otherKart3);
-	objList.push_back(&otherKart4);
-
 
 }
 
@@ -46,7 +49,7 @@ void CMainGameLoop::StartLoop()
 		KeyInput()->Query();
 
 		for (auto engine : updateEngineList)
-			engine->Update();
+			engine->Update(&myKart);
 
 		GDI()->Render();
 

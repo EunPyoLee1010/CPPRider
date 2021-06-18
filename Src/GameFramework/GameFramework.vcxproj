@@ -145,13 +145,14 @@
     <ClInclude Include="CameraUpdateEngine.h" />
     <ClInclude Include="CollisionUpdateEngine.h" />
     <ClInclude Include="FrontBoardSuper.h" />
+    <ClInclude Include="GameFramework.h" />
     <ClInclude Include="KartObject.h" />
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="ObjectSuper.h" />
     <ClInclude Include="RendererForGame.h" />
+    <ClInclude Include="StatusUpdateEngine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UpdateEngineSuper.h" />
-    <ClInclude Include="VectorUpdateEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackBoardSuper.cpp" />
@@ -162,8 +163,8 @@
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="ObjectSuper.cpp" />
     <ClCompile Include="RendererForGame.cpp" />
+    <ClCompile Include="StatusUpdateEngine.cpp" />
     <ClCompile Include="UpdateEngineSuper.cpp" />
-    <ClCompile Include="VectorUpdateEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
