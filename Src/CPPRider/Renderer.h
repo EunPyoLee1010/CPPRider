@@ -7,7 +7,8 @@ public:
 		CRenderer instance;
 		return &instance;
 	}
-	void CreateWindow();
+	void CreateGDI();
+	int CreateGDIScreen();
 	void Render();
 private:
 	CRenderer();

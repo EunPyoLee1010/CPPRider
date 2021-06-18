@@ -18,12 +18,13 @@ public:
 		return &instance;
 	}
 
-private:
-	bool loopFlag;
 	std::vector<CBackBoardSuper*> backboardList;
 	std::vector<CObjectSuper*> objList;
 	std::vector<CFrontBoardSuper*> frontboardList;
 	std::vector<CUpdateEngineSuper*>updateEngineList;
+
+private:
+	bool loopFlag;
 	CMainGameLoop();
 	~CMainGameLoop();
 };

@@ -142,12 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HDCHelper.cpp" />
     <ClCompile Include="KeyInputEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGameLoop.cpp" />
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HDCHelper.h" />
     <ClInclude Include="KeyInputEngine.h" />
     <ClInclude Include="MainGameLoop.h" />
     <ClInclude Include="Renderer.h" />
