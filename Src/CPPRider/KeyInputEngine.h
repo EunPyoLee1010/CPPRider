@@ -5,7 +5,7 @@ public:
 	int Query();
 	static CKeyInputEngine* getInstance()
 	{
-		CKeyInputEngine instance;
+		static CKeyInputEngine instance;
 		return &instance;
 	}
 
@@ -14,7 +14,7 @@ private:
 	~CKeyInputEngine();
 };
 
-CKeyInputEngine* KeyInput()
+inline CKeyInputEngine* KeyInput()
 {
 	return CKeyInputEngine::getInstance();
 }

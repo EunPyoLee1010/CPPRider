@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BackBoardSuper.h" />
+    <ClInclude Include="camera.h" />
     <ClInclude Include="CameraUpdateEngine.h" />
     <ClInclude Include="CollisionUpdateEngine.h" />
     <ClInclude Include="FrontBoardSuper.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="ObjectSuper.h" />
     <ClInclude Include="RendererForGame.h" />
+    <ClInclude Include="StatusObject.h" />
     <ClInclude Include="StatusUpdateEngine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UpdateEngineSuper.h" />
@@ -163,6 +165,7 @@
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="ObjectSuper.cpp" />
     <ClCompile Include="RendererForGame.cpp" />
+    <ClCompile Include="StatusObject.cpp" />
     <ClCompile Include="StatusUpdateEngine.cpp" />
     <ClCompile Include="UpdateEngineSuper.cpp" />
   </ItemGroup>

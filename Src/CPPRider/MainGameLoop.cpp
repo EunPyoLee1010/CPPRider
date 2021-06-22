@@ -4,6 +4,13 @@
 #include "Renderer.h"
 
 CKartObject myKart;
+CKartObject otherKarts[4];
+
+int CStatusObject::playerAngle;
+int CStatusObject::playerPosX;
+int CStatusObject::playerPosY;
+
+Camera view;
 
 CMainGameLoop::CMainGameLoop() :
 	loopFlag(true)
@@ -26,7 +33,6 @@ void CMainGameLoop::Initialize()
 
 	backboardList.push_back(new CMapObject());
 
-	CKartObject otherKarts[4];
 	int x = 100;
 	for (int i = 0; i < 4; i++)
 	{
@@ -38,8 +44,10 @@ void CMainGameLoop::Initialize()
 
 	myKart.posX = 250;
 	myKart.posY = 250;
+	myKart.name = "ÀºÇ¥";
 	objList.push_back(&myKart);
 
+	frontboardList.push_back(new CStatusObject());
 }
 
 void CMainGameLoop::StartLoop()

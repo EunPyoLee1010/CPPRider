@@ -1,8 +1,11 @@
 #pragma once
+#include <cmath>
+#include <string>
+#include <Windows.h>
 
-#include "RendererForGame.h"
-#include "ObjectSuper.h"
+
 #include "GameFramework.h"
 
-#include <cmath>
+#include "RendererForGame.h"
+
 #define PI	3.14159265358979323846

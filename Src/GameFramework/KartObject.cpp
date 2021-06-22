@@ -4,6 +4,7 @@
 CKartObject::CKartObject() :
 	angle(0),
 	vel(0),
+	acc(0.01),
 	maxVel(2)
 {
 }
@@ -12,36 +13,13 @@ CKartObject::~CKartObject()
 {
 }
 
-void CKartObject::Draw()
+void CKartObject::Draw(CRendererForGame* renderer)
 {
-}
+	int left = posX - width * 0.5;
+	int right = posX + width * 0.5;
+	int top = (WINDOW_HEIGHT - posY) - height * 0.5;
+	int bottom = (WINDOW_HEIGHT - posY) + height * 0.5;
 
-void CKartObject::SteerWheel(int angle)
-{
-	this->angle += angle;
-
-	if (this->angle >= 360)
-		this->angle -= 360;
-	if (this->angle <= -360)
-		this->angle += 360;
-}
-
-void CKartObject::ControlSpeed(double velocity)
-{
-	this->vel += velocity;
-
-	if (vel >= this->maxVel)
-		vel = maxVel;
-	if (vel <= -1 * this->maxVel)
-		vel = -1 * maxVel;
-}
-
-int CKartObject::getAngle()
-{
-	return angle;
-}
-
-double CKartObject::getVel()
-{
-	return vel;
+	renderer->Rectangle(left, top, right, bottom, RGB(0, 0, 255));
+	renderer->Text(left, bottom + 10, RGB(0, 0, 0), name);
 }

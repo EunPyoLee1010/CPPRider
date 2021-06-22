@@ -1,16 +1,20 @@
 #pragma once
+#include "RendererForGame.h"
+
 class CObjectSuper
 {
 public:
 	CObjectSuper();
 	~CObjectSuper();
 
-	virtual void Draw();
+	virtual void Draw(CRendererForGame* renderer);
 
-	int posX;
-	int posY;
+	double posX;
+	double posY;
 
-	void Move(double vel, int angle);
+	int width;
+	int height;
+	std::string name;
 private:
 
 };

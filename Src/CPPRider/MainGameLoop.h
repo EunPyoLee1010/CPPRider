@@ -14,7 +14,7 @@ public:
 
 	static CMainGameLoop* getInstance()
 	{
-		CMainGameLoop instance;
+		static CMainGameLoop instance;
 		return &instance;
 	}
 
@@ -29,7 +29,7 @@ private:
 	~CMainGameLoop();
 };
 
-CMainGameLoop* GameLoop()
+inline CMainGameLoop* GameLoop()
 {
 	return CMainGameLoop::getInstance();
 }

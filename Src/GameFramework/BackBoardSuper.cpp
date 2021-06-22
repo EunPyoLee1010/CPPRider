@@ -9,6 +9,6 @@ CBackBoardSuper::~CBackBoardSuper()
 {
 }
 
-void CBackBoardSuper::Draw(CRenderer* renderer)
+void CBackBoardSuper::Draw(CRendererForGame* renderer)
 {
 }

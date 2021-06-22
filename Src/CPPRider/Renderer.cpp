@@ -3,7 +3,7 @@
 #include "MainGameLoop.h"
 #include "HDCHelper.h"
 
-HDCHelper hDCInstance;
+static HDCHelper hDCInstance;
 
 void CRenderer::CreateGDI()
 {
@@ -12,15 +12,64 @@ void CRenderer::CreateGDI()
 
 void CRenderer::Render()
 {
+	hDCInstance.Clear();
+
+
 	for (auto backObj : GameLoop()->backboardList)
-		backObj->Draw();
+	{
+		backObj->Draw(this);
+	}
 
 	for (auto obj : GameLoop()->objList)
-		obj->Draw();
+	{
+		extern Camera view;
+		extern CKartObject myKart;
+		int screenX = 0;
+		int screenY = 0;
+		if (view.name != obj->name)
+		{
+			//Ä«¸Þ¶ó
+		}
+		if (view.name == obj->name)
+		{
+			screenX = WINDOW_WIDTH * 0.5;
+			screenY = WINDOW_HEIGHT * 0.5;
+		}
+		obj->Draw(this);
+	}
 
 	for (auto frontObj : GameLoop()->frontboardList)
-		frontObj->Draw();
+	{
+		frontObj->Draw(this);
+	}
+
+	HDC hDC = GetDC(hDCInstance.m_hWnd);
+	hDCInstance.Flush(hDC, {0, 0});
+	::ReleaseDC(hDCInstance.m_hWnd, hDC);
 }
+
+void CRenderer::Rectangle(int left, int top, int right, int bottom, COLORREF rgb)
+{
+	PenHelper hPen(hDCInstance.m_MemDC, rgb);
+	BrushHelper hBrush(hDCInstance.m_MemDC, rgb);
+	::Rectangle(hDCInstance.m_MemDC, left, top, right, bottom);
+}
+
+void CRenderer::Ellipse(int left, int top, int right, int bottom, COLORREF rgb)
+{
+	PenHelper hPen(hDCInstance.m_MemDC, rgb);
+	BrushHelper hBrush(hDCInstance.m_MemDC, rgb);
+	::Ellipse(hDCInstance.m_MemDC, left, top, right, bottom);
+}
+
+void CRenderer::Text(int left, int top, COLORREF rgb, std::string text)
+{
+	PenHelper hPen(hDCInstance.m_MemDC, rgb);
+	::SetBkMode(hDCInstance.m_MemDC, TRANSPARENT);
+	::SetTextAlign(hDCInstance.m_MemDC, TA_CENTER);
+	::TextOutA(hDCInstance.m_MemDC, left, top, text.c_str(), strlen(text.c_str()));
+}
+
 
 CRenderer::CRenderer()
 {
@@ -34,6 +83,8 @@ CRenderer::~CRenderer()
 DWORD WINAPI CreateGDIThreadCaller(void* pContext)
 {
 	GDI()->CreateGDIScreen();
+
+	return 0;
 }
 
 int CRenderer::CreateGDIScreen()

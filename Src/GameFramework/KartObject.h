@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjectSuper.h"
+#include "RendererForGame.h"
 
 class CKartObject : public CObjectSuper
 {
@@ -7,16 +8,12 @@ public:
 	CKartObject();
 	~CKartObject();
 
-	virtual void Draw();
+	virtual void Draw(CRendererForGame* renderer);
 
-	void SteerWheel(int angle);
-	void ControlSpeed(double velocity);
-
-	int angle;
+	double angle;
 	double vel;
-
-private:
-
 	double maxVel;
+	double acc;
+private:
 };
 
