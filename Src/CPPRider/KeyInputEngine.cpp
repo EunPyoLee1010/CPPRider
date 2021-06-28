@@ -9,7 +9,6 @@ int CKeyInputEngine::Query()
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
 		myKart.angle -= 0.5 *(myKart.vel / myKart.maxVel);
-		if(myKart.angle > 370)
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
