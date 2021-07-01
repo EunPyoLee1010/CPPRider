@@ -8,30 +8,36 @@ int CKeyInputEngine::Query()
 
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		myKart.angle -= 0.5 *(myKart.vel / myKart.maxVel);
+		myKart.angle -= 0.5 * (myKart.vel / myKart.maxVel);
+
+		if (myKart.angle >= 360)
+			myKart.angle -= 360;
+		if (myKart.angle <= -360)
+			myKart.angle += 360;
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
 		myKart.angle += 0.5 *(myKart.vel / myKart.maxVel);
+
+		if (myKart.angle >= 360)
+			myKart.angle -= 360;
+		if (myKart.angle <= -360)
+			myKart.angle += 360;
 	}
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
-		double velocity = myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
-		if (velocity >= myKart.maxVel)
-			myKart.vel += myKart.maxVel * TIME_QUANTUM;
-		if (velocity < myKart.maxVel)
-			myKart.vel += velocity;
+		myKart.vel += myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
+		if(myKart.vel < 0)
+			myKart.vel += myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
 	}
 
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
-		double velocity = -1 * myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
-		if (velocity <= -1 * myKart.maxVel)
-			myKart.vel += myKart.maxVel * TIME_QUANTUM;
-		if (velocity > -1 * myKart.maxVel)
-			myKart.vel += velocity;
+		myKart.vel += -1 * myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
+		if(myKart.vel > 0)
+			myKart.vel += -1 * myKart.acc * (myKart.maxVel - myKart.vel) * TIME_QUANTUM;
 	}
 
 	return nCount;

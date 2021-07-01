@@ -70,6 +70,13 @@ void CRenderer::Text(int left, int top, COLORREF rgb, std::string text)
 	::TextOutA(hDCInstance.m_MemDC, left, top, text.c_str(), strlen(text.c_str()));
 }
 
+void CRenderer::Polygon(POINT* edges, COLORREF color)
+{
+	PenHelper hPen(hDCInstance.m_MemDC, color);
+	BrushHelper hBrush(hDCInstance.m_MemDC, color);
+	::Polygon(hDCInstance.m_MemDC, edges, 4);
+}
+
 
 CRenderer::CRenderer()
 {

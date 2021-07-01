@@ -13,8 +13,11 @@ CStatusUpdateEngine::~CStatusUpdateEngine()
 void CStatusUpdateEngine::Update(CKartObject* obj)
 {
 	double radian = obj->angle * (PI / 180);
-	obj->posX += obj->vel * sin(radian);// *TIME_QUANTUM;
-	obj->posY += obj->vel * cos(radian);// *TIME_QUANTUM;
+	
+	CMapObject::mapContainer[int(obj->posY)][int(obj->posX)] = 2;
+
+	obj->posX += obj->vel * sin(radian);
+	obj->posY += obj->vel * cos(radian);
 
 	CStatusObject::playerAngle = obj->angle;
 	CStatusObject::playerPosX = obj->posX;

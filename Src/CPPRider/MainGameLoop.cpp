@@ -5,6 +5,8 @@
 
 CKartObject myKart;
 CKartObject otherKarts[4];
+CMapObject map;
+char CMapObject::mapContainer[1000][1000];
 
 int CStatusObject::playerAngle;
 int CStatusObject::playerPosX;
@@ -30,8 +32,7 @@ void CMainGameLoop::Initialize()
 	updateEngineList.push_back(new CStatusUpdateEngine());
 	updateEngineList.push_back(new CCameraUpdateEngine());
 
-
-	backboardList.push_back(new CMapObject());
+	backboardList.push_back(&map);
 
 	int x = 100;
 	for (int i = 0; i < 4; i++)

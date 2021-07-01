@@ -6,9 +6,9 @@ public:
 	CMapObject();
 	~CMapObject();
 
-	char mapContainer[1000][1000];
+	static char mapContainer[1000][1000];
 
-	virtual void Draw();
+	virtual void Draw(CRendererForGame* renderer);
 private:
 };
 

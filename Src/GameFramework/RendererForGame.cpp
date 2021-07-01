@@ -19,3 +19,7 @@ void CRendererForGame::Ellipse(int left, int top, int right, int bottom, COLORRE
 void CRendererForGame::Text(int left, int top, COLORREF rgb, std::string text)
 {
 }
+
+void CRendererForGame::Polygon(POINT* edges, COLORREF color)
+{
+}
