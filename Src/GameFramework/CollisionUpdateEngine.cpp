@@ -19,7 +19,7 @@ void CCollisionUpdateEngine::Update(CKartObject* obj)
 		obj->posX = 1;
 		obj->vel *= -0.1;
 	}
-	if (moveX > 1000)
+	if (moveX > 999)
 	{
 		obj->posX = 999;
 		obj->vel *= -0.1;
@@ -29,7 +29,7 @@ void CCollisionUpdateEngine::Update(CKartObject* obj)
 		obj->posY = 1;
 		obj->vel *= -0.1;
 	}
-	if (moveY > 1000)
+	if (moveY > 999)
 	{
 		obj->posY = 999;
 		obj->vel *= -0.1;

@@ -12,7 +12,9 @@ CCameraUpdateEngine::~CCameraUpdateEngine()
 void CCameraUpdateEngine::Update(CKartObject* obj)
 {
 	extern Camera view;
-	view.CenterX = obj->posX;
-	view.CenterY = obj->posY;
+	view.objectX = obj->posX;
+	view.objectY = obj->posY;
+	view.centeredScreenX = WINDOW_WIDTH * 0.5;
+	view.centeredScreenY = WINDOW_HEIGHT * 0.5;
 	view.name = obj->name;
 }

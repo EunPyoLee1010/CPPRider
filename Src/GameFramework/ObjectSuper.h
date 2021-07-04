@@ -7,7 +7,7 @@ public:
 	CObjectSuper();
 	~CObjectSuper();
 
-	virtual void Draw(CRendererForGame* renderer);
+	virtual void Draw(CRendererForGame* renderer, POINT screen);
 
 	double posX;
 	double posY;

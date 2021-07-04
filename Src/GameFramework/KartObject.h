@@ -8,7 +8,7 @@ public:
 	CKartObject();
 	~CKartObject();
 
-	virtual void Draw(CRendererForGame* renderer);
+	virtual void Draw(CRendererForGame* renderer, POINT screen);
 
 	double angle;
 	double vel;

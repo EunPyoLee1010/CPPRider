@@ -15,7 +15,7 @@ CObjectSuper::~CObjectSuper()
 {
 }
 
-void CObjectSuper::Draw(CRendererForGame* renderer)
+void CObjectSuper::Draw(CRendererForGame* renderer,  POINT screen)
 {
 }
 

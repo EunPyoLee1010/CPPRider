@@ -43,8 +43,8 @@ void CMainGameLoop::Initialize()
 		objList.push_back(&otherKarts[i]);
 	}
 
-	myKart.posX = 250;
-	myKart.posY = 250;
+	myKart.posX = 500;
+	myKart.posY = 500;
 	myKart.name = "ÀºÇ¥";
 	objList.push_back(&myKart);
 

@@ -1,7 +1,9 @@
 #pragma once
 struct Camera
 {
-	int CenterX;
-	int CenterY;
+	int objectX;
+	int objectY;
+	int centeredScreenX;
+	int centeredScreenY;
 	std::string name;
 };

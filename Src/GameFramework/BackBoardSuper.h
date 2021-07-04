@@ -6,7 +6,7 @@ class CBackBoardSuper
 public:
 	CBackBoardSuper();
 	~CBackBoardSuper();
-	virtual void Draw(CRendererForGame* renderer);
+	virtual void Draw(CRendererForGame* renderer, POINT screen);
 private:
 
 };

@@ -14,28 +14,38 @@ void CRenderer::Render()
 {
 	hDCInstance.Clear();
 
+	extern Camera view;
+	extern CKartObject myKart;
+
+	//카메라
+	int MovedCameraX = view.objectX - view.centeredScreenX;
+	int MovedCameraY = view.objectY - view.centeredScreenY;
+
+	int screenX = 0;
+	int screenY = 0;
+
+	POINT camera = {0 , 0};
 
 	for (auto backObj : GameLoop()->backboardList)
 	{
-		backObj->Draw(this);
+		//맵에 대한 카메라 변수 조절하고 Draw함수에서 for문 범위 정하기
+		backObj->Draw(this, camera);
 	}
 
 	for (auto obj : GameLoop()->objList)
 	{
-		extern Camera view;
-		extern CKartObject myKart;
-		int screenX = 0;
-		int screenY = 0;
 		if (view.name != obj->name)
 		{
-			//카메라
+			camera.x = obj->posX - MovedCameraX;
+			camera.y = obj->posY - MovedCameraY;
 		}
 		if (view.name == obj->name)
 		{
-			screenX = WINDOW_WIDTH * 0.5;
-			screenY = WINDOW_HEIGHT * 0.5;
+			camera.x = WINDOW_WIDTH * 0.5;
+			camera.y = WINDOW_HEIGHT * 0.5;
 		}
-		obj->Draw(this);
+
+		obj->Draw(this, camera);
 	}
 
 	for (auto frontObj : GameLoop()->frontboardList)
