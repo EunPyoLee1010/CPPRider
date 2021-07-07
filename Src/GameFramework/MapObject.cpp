@@ -5,8 +5,8 @@
 
 CMapObject::CMapObject()
 {
-	//std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\Map\\map1.txt";
-	std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	//std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
 	std::ifstream openFile;
 	std::istringstream ss;
 
@@ -38,51 +38,31 @@ CMapObject::~CMapObject()
 void CMapObject::Draw(CRendererForGame* renderer, CVECTOR screen)
 {	
 	extern Camera view;
-	extern CKartObject myKart;
 
 	CVECTOR movedCamVec = view.objVector - view.centVector;
-
-	for (int i = int(myKart.pos.Y) - 250; i < int(myKart.pos.Y) + 250; i++)
+	CVECTOR index;
+	CVECTOR centRelVec;
+	CVECTOR rotatedVec;
+	for (int y = view.objVector.Y - 250; y < view.objVector.Y + 250; y++)
 	{
-		if (i < 0 || i > 999)
+		if (y < 0 || y > 999)
 			continue;
-		for (int j = int(myKart.pos.X) - 250; j < int(myKart.pos.X) + 250; j++)
+		for (int x = view.objVector.X - 250; x < view.objVector.X + 250; x++)
 		{
-			if (j < 0 || j > 999)
+			if (x < 0 || x > 999)
 				continue;
-
-			if (mapContainer[i][j] == 2)
+			if (mapContainer[y][x] == 1)
 			{
-				int left = j - movedCamVec.X - 0.5;
-				int top = (WINDOW_HEIGHT - i + movedCamVec.Y) - 0.5;
-				int right = j - movedCamVec.X + 0.5;
-				int bottom = (WINDOW_HEIGHT - i + movedCamVec.Y) + 0.5;
-				renderer->Ellipse(left, top, right, bottom, RGB(0, 255, 0));
-			}
+				index(x, y);
+				centRelVec = index - view.objVector - movedCamVec;
+				rotatedVec = centRelVec.RotateCntClockwise(view.angle);
+				screen = rotatedVec + view.objVector;
 
-			if (mapContainer[i][j] == 1)
-			{
-				//int left = j - MovedCameraX - 0.5;
-				//int top = (WINDOW_HEIGHT - i + MovedCameraY) - 0.5;
-				//int right = j - MovedCameraX + 0.5;
-				//int bottom = (WINDOW_HEIGHT - i + MovedCameraY) + 0.5;
+				int left = screen.X - 0.5;
+				int right = screen.X + 0.5;
+				int top = (WINDOW_HEIGHT - screen.Y) - 0.5;
+				int bottom = (WINDOW_HEIGHT - screen.Y) + 0.5;
 
-				//double radian = (myKart.angle) * PI / 180;
-
-				//POINT edges[4] =
-				//{
-				//	{left * cos(radian) + top * sin(radian), top * cos(radian) - left * sin(radian)},
-				//	{right * cos(radian) + top * sin(radian), top * cos(radian) - right * sin(radian)},
-				//	{right * cos(radian) + bottom * sin(radian), bottom * cos(radian) - right * sin(radian)},
-				//	{left * cos(radian) + bottom * sin(radian), bottom * cos(radian) - left * sin(radian)}
-				//};
-
-				//renderer->Polygon(edges, RGB(0, 0, 0));
-
-				int left = j - movedCamVec.X - 0.5;
-				int top = (WINDOW_HEIGHT - i + movedCamVec.Y) - 0.5;
-				int right = j - movedCamVec.X + 0.5;
-				int bottom = (WINDOW_HEIGHT - i + movedCamVec.Y) + 0.5;
 				renderer->Rectangle(left, top, right, bottom, RGB(0, 0, 0));
 			}
 		}

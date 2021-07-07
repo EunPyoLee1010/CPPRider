@@ -1,6 +1,9 @@
 #pragma once
 #include <Windows.h>
 #include <math.h>
+
+#define PI	3.14159265358979323846
+
 struct CVECTOR
 {
 	double X;
@@ -13,6 +16,16 @@ struct CVECTOR
 		X(x),
 		Y(y)
 	{}
+
+	bool operator<(int num)
+	{
+		return (X < num) && (Y < num);
+	}
+
+	bool operator>(int num)
+	{
+		return (X > num) && (Y > num);
+	}
 
 	CVECTOR operator=(CVECTOR Vector)
 	{
@@ -27,6 +40,15 @@ struct CVECTOR
 		CVECTOR sum;
 		sum.X = X + addVector.X;
 		sum.Y = Y + addVector.Y;
+
+		return sum;
+	}
+
+	CVECTOR operator+(int number)
+	{
+		CVECTOR sum;
+		sum.X = X + number;
+		sum.Y = Y + number;
 
 		return sum;
 	}
@@ -47,8 +69,9 @@ struct CVECTOR
 		return *this;
 	}
 
-	CVECTOR RotateCntClockwise(double radian) 
+	CVECTOR RotateCntClockwise(double angle) 
 	{
+		double radian = angle * PI / 180;
 		CVECTOR tmp;
 		tmp.X = X * cos(radian) - Y * sin(radian);
 		tmp.Y = X * sin(radian) + Y * cos(radian);
@@ -58,8 +81,9 @@ struct CVECTOR
 		//https://gammabeta.tistory.com/913
 	}
 
-	CVECTOR RotateClockwise(double radian)
+	CVECTOR RotateClockwise(double angle)
 	{
+		double radian = angle * PI / 180;
 		CVECTOR tmp;
 		tmp.X = X * cos(radian) + Y * sin(radian);
 		tmp.Y = -1 * X * sin(radian) + Y * cos(radian);

@@ -16,7 +16,6 @@ void CKartObject::Draw(CRendererForGame* renderer, CVECTOR screen)
 {
 	//extern CKartObject myKart;
 	extern Camera view;
-	double radian = (angle) * PI / 180;
 	int left = screen.X - width * 0.5;
 	int right = screen.X + width * 0.5;
 	int top = (WINDOW_HEIGHT - screen.Y) - height * 0.5;
@@ -42,7 +41,7 @@ void CKartObject::Draw(CRendererForGame* renderer, CVECTOR screen)
 	for (int i = 0; i < 4; i++)
 	{
 		edge[i] = edge[i] - screen;
-		edge[i] = edge[i].RotateCntClockwise(radian);
+		edge[i] = edge[i].RotateCntClockwise(angle);
 		edge[i] = edge[i] + screen;
 
 		rotatedEdge[i] = { int(edge[i].X), int(edge[i].Y) };

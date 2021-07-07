@@ -32,10 +32,11 @@ void CRenderer::Render()
 	{
 		if (view.name != obj->name)
 		{
+			camera = obj->pos.RotateCntClockwise(view.angle);
 			//카메라 회전 고민해보기
-			double radian = view.angle * PI / 180;
-			camera = obj->pos - movedCamVec;
-			camera = camera.RotateCntClockwise(radian);
+		
+			camera = camera - movedCamVec;
+			
 			//camera = camera + movedCamVec;
 		}
 		if (view.name == obj->name)
