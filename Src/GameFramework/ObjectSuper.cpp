@@ -3,8 +3,8 @@
 #include "RendererForGame.h"
 
 CObjectSuper::CObjectSuper() :
-	posX(0),
-	posY(0),
+	angle(0),
+	pos(0,0),
 	width(10),
 	height(30),
 	name("Kart")
@@ -15,7 +15,7 @@ CObjectSuper::~CObjectSuper()
 {
 }
 
-void CObjectSuper::Draw(CRendererForGame* renderer,  POINT screen)
+void CObjectSuper::Draw(CRendererForGame* renderer,  CVECTOR screen)
 {
 }
 

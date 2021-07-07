@@ -12,6 +12,7 @@
 #include "MapObject.h"
 
 #include "camera.h"
+#include "vector.h"
 
 #define	FPS	60
 #define	TIME_QUANTUM	1 / FPS

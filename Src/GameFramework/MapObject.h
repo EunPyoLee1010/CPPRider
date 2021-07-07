@@ -8,7 +8,7 @@ public:
 
 	static char mapContainer[1000][1000];
 
-	virtual void Draw(CRendererForGame* renderer, POINT screen);
+	virtual void Draw(CRendererForGame* renderer, CVECTOR screen);
 private:
 };
 

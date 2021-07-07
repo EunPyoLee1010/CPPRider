@@ -1,5 +1,6 @@
 #pragma once
 #include "RendererForGame.h"
+#include "vector.h"
 
 class CObjectSuper
 {
@@ -7,11 +8,11 @@ public:
 	CObjectSuper();
 	~CObjectSuper();
 
-	virtual void Draw(CRendererForGame* renderer, POINT screen);
+	virtual void Draw(CRendererForGame* renderer, CVECTOR screen);
 
-	double posX;
-	double posY;
+	CVECTOR pos;
 
+	double angle;
 	int width;
 	int height;
 	std::string name;

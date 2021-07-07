@@ -18,13 +18,9 @@ void CRenderer::Render()
 	extern CKartObject myKart;
 
 	//카메라
-	int MovedCameraX = view.objectX - view.centeredScreenX;
-	int MovedCameraY = view.objectY - view.centeredScreenY;
+	CVECTOR movedCamVec = view.objVector - view.centVector;
 
-	int screenX = 0;
-	int screenY = 0;
-
-	POINT camera = {0 , 0};
+	CVECTOR camera(0 , 0);
 
 	for (auto backObj : GameLoop()->backboardList)
 	{
@@ -36,13 +32,15 @@ void CRenderer::Render()
 	{
 		if (view.name != obj->name)
 		{
-			camera.x = obj->posX - MovedCameraX;
-			camera.y = obj->posY - MovedCameraY;
+			//카메라 회전 고민해보기
+			double radian = view.angle * PI / 180;
+			camera = obj->pos - movedCamVec;
+			camera = camera.RotateCntClockwise(radian);
+			//camera = camera + movedCamVec;
 		}
 		if (view.name == obj->name)
 		{
-			camera.x = WINDOW_WIDTH * 0.5;
-			camera.y = WINDOW_HEIGHT * 0.5;
+			camera(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
 		}
 
 		obj->Draw(this, camera);

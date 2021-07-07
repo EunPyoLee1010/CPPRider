@@ -38,13 +38,13 @@ void CMainGameLoop::Initialize()
 	for (int i = 0; i < 4; i++)
 	{
 		int intervel = 200;
-		otherKarts[i].posX = x + intervel * i;
-		otherKarts[i].posY = 250;
+		otherKarts[i].pos.X = (x + intervel * i);
+		otherKarts[i].pos.Y = 250;
 		objList.push_back(&otherKarts[i]);
 	}
 
-	myKart.posX = 500;
-	myKart.posY = 500;
+	myKart.pos.X = 250;
+	myKart.pos.Y = 250;
 	myKart.name = "ÀºÇ¥";
 	objList.push_back(&myKart);
 

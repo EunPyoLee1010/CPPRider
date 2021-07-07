@@ -12,26 +12,26 @@ CCollisionUpdateEngine::~CCollisionUpdateEngine()
 void CCollisionUpdateEngine::Update(CKartObject* obj)
 {
 	double radian = obj->angle * PI / 180;
-	int moveX = obj->posX + obj->vel * cos(radian) * TIME_QUANTUM;
-	int moveY = obj->posY + obj->vel * sin(radian) * TIME_QUANTUM;
-	if (moveX < 0)
+	CVECTOR moveVec(obj->pos.X + obj->vel * cos(radian) * TIME_QUANTUM, obj->pos.Y + obj->vel * sin(radian) * TIME_QUANTUM);
+
+	if (moveVec.X < 0)
 	{
-		obj->posX = 1;
+		obj->pos.X = 1;
 		obj->vel *= -0.1;
 	}
-	if (moveX > 999)
+	if (moveVec.X > 999)
 	{
-		obj->posX = 999;
+		obj->pos.X = 999;
 		obj->vel *= -0.1;
 	}
-	if (moveY < 0)
+	if (moveVec.Y < 0)
 	{
-		obj->posY = 1;
+		obj->pos.Y = 1;
 		obj->vel *= -0.1;
 	}
-	if (moveY > 999)
+	if (moveVec.Y > 999)
 	{
-		obj->posY = 999;
+		obj->pos.Y = 999;
 		obj->vel *= -0.1;
 	}
 }

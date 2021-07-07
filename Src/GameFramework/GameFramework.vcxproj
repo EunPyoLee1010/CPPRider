@@ -155,6 +155,7 @@
     <ClInclude Include="StatusUpdateEngine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UpdateEngineSuper.h" />
+    <ClInclude Include="vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackBoardSuper.cpp" />

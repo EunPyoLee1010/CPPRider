@@ -19,6 +19,7 @@ CMapObject::CMapObject()
 		{
 			char mapLine[1000] = {0,};
 			int i = 0;
+			ss.clear();
 			ss.str(line);
 			while (getline(ss, line, ','))
 			{
@@ -34,58 +35,56 @@ CMapObject::~CMapObject()
 {
 }
 
-void CMapObject::Draw(CRendererForGame* renderer, POINT screen)
+void CMapObject::Draw(CRendererForGame* renderer, CVECTOR screen)
 {	
 	extern Camera view;
 	extern CKartObject myKart;
 
-	int MovedCameraX = view.objectX - view.centeredScreenX;
-	int MovedCameraY = view.objectY - view.centeredScreenY;
+	CVECTOR movedCamVec = view.objVector - view.centVector;
 
-	for (int i = int(myKart.posY) - 250; i < int(myKart.posY) + 250; i++)
+	for (int i = int(myKart.pos.Y) - 250; i < int(myKart.pos.Y) + 250; i++)
 	{
 		if (i < 0 || i > 999)
 			continue;
-		for (int j = int(myKart.posX) - 250; j < int(myKart.posX) + 250; j++)
+		for (int j = int(myKart.pos.X) - 250; j < int(myKart.pos.X) + 250; j++)
 		{
 			if (j < 0 || j > 999)
 				continue;
 
 			if (mapContainer[i][j] == 2)
 			{
-				int left = j - MovedCameraX - 0.5;
-				int top = (WINDOW_HEIGHT - i + MovedCameraY) - 0.5;
-				int right = j - MovedCameraX + 0.5;
-				int bottom = (WINDOW_HEIGHT - i + MovedCameraY) + 0.5;
+				int left = j - movedCamVec.X - 0.5;
+				int top = (WINDOW_HEIGHT - i + movedCamVec.Y) - 0.5;
+				int right = j - movedCamVec.X + 0.5;
+				int bottom = (WINDOW_HEIGHT - i + movedCamVec.Y) + 0.5;
 				renderer->Ellipse(left, top, right, bottom, RGB(0, 255, 0));
 			}
 
 			if (mapContainer[i][j] == 1)
 			{
-				int left = j - MovedCameraX - 0.5;
-				int top = (WINDOW_HEIGHT - i + MovedCameraY) - 0.5;
-				int right = j - MovedCameraX + 0.5;
-				int bottom = (WINDOW_HEIGHT - i + MovedCameraY) + 0.5;
-				renderer->Ellipse(left, top, right, bottom, RGB(0, 0, 0));
+				//int left = j - MovedCameraX - 0.5;
+				//int top = (WINDOW_HEIGHT - i + MovedCameraY) - 0.5;
+				//int right = j - MovedCameraX + 0.5;
+				//int bottom = (WINDOW_HEIGHT - i + MovedCameraY) + 0.5;
+
+				//double radian = (myKart.angle) * PI / 180;
+
+				//POINT edges[4] =
+				//{
+				//	{left * cos(radian) + top * sin(radian), top * cos(radian) - left * sin(radian)},
+				//	{right * cos(radian) + top * sin(radian), top * cos(radian) - right * sin(radian)},
+				//	{right * cos(radian) + bottom * sin(radian), bottom * cos(radian) - right * sin(radian)},
+				//	{left * cos(radian) + bottom * sin(radian), bottom * cos(radian) - left * sin(radian)}
+				//};
+
+				//renderer->Polygon(edges, RGB(0, 0, 0));
+
+				int left = j - movedCamVec.X - 0.5;
+				int top = (WINDOW_HEIGHT - i + movedCamVec.Y) - 0.5;
+				int right = j - movedCamVec.X + 0.5;
+				int bottom = (WINDOW_HEIGHT - i + movedCamVec.Y) + 0.5;
+				renderer->Rectangle(left, top, right, bottom, RGB(0, 0, 0));
 			}
 		}
 	}
-
-	//for (int i = 0; i < 500; i++)
-	//{
-	//	for (int j = 0; j < 500; j++)
-	//	{
-	//		if (mapContainer[i][j] == 2 || mapContainer[i][j] == 1)
-	//		{
-	//			int left = j - 0.5;
-	//			int top = (WINDOW_HEIGHT - i) - 0.5;
-	//			int right = j + 0.5;
-	//			int bottom = (WINDOW_HEIGHT - i) + 0.5;
-	//			if(mapContainer[i][j] == 2)
-	//				renderer->Ellipse(left, top, right, bottom, RGB(0, 255, 0));
-	//			if(mapContainer[i][j] == 1)
-	//				renderer->Rectangle(left, top, right, bottom, RGB(0, 0, 0));
-	//		}
-	//	}
-	//}
 }
