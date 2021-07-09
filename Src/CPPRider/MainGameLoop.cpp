@@ -12,7 +12,7 @@ int CStatusObject::playerAngle;
 int CStatusObject::playerPosX;
 int CStatusObject::playerPosY;
 
-Camera view;
+Camera camera;	//뷰도 말이 안된다. camera
 
 CMainGameLoop::CMainGameLoop() :
 	loopFlag(true)
@@ -34,14 +34,14 @@ void CMainGameLoop::Initialize()
 
 	backboardList.push_back(&map);
 
-	int x = 100;
-	for (int i = 0; i < 4; i++)
-	{
-		int intervel = 200;
-		otherKarts[i].pos.X = (x + intervel * i);
-		otherKarts[i].pos.Y = 250;
-		objList.push_back(&otherKarts[i]);
-	}
+	//int x = 100;
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	int intervel = 200;
+	//	otherKarts[i].pos.X = (x + intervel * i);
+	//	otherKarts[i].pos.Y = 250;
+	//	objList.push_back(&otherKarts[i]);
+	//}
 
 	myKart.pos.X = 250;
 	myKart.pos.Y = 250;

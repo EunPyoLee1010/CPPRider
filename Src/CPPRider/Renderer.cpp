@@ -10,17 +10,16 @@ void CRenderer::CreateGDI()
 	CreateThread(NULL, 0, CreateGDIThreadCaller, this, 0, 0);
 }
 
-void CRenderer::Render()
+void CRenderer::Render()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기법이 변경될 수 있는 엔진
 {
 	hDCInstance.Clear();
 
-	extern Camera view;
+	extern Camera camera;		//centerposition와 angle을 알게됐다.
 	extern CKartObject myKart;
 
-	//카메라
-	CVECTOR movedCamVec = view.objVector - view.centVector;
 
-	CVECTOR camera(0 , 0);
+
+	//CVECTOR camera(0 , 0);	//실제로 카메라에 나타나는 객체 위치
 
 	for (auto backObj : GameLoop()->backboardList)
 	{
@@ -30,20 +29,17 @@ void CRenderer::Render()
 
 	for (auto obj : GameLoop()->objList)
 	{
-		if (view.name != obj->name)
-		{
-			camera = obj->pos.RotateCntClockwise(view.angle);
-			//카메라 회전 고민해보기
-		
-			camera = camera - movedCamVec;
-			
-			//camera = camera + movedCamVec;
-		}
-		if (view.name == obj->name)
-		{
-			camera(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
-		}
-
+		//if (camera.name != obj->name)
+		//{
+		//	camera = obj->pos - camera.objVector - movedCamVec;
+		//	camera = camera.RotateCntClockwise(camera.angle);
+		//	//카메라 회전 고민해보기
+		//	camera = camera + camera.objVector;
+		//}
+		//if (camera.name == obj->name)
+		//{
+		//	camera(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
+		//}
 		obj->Draw(this, camera);
 	}
 

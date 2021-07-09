@@ -12,14 +12,19 @@ CKartObject::~CKartObject()
 {
 }
 
-void CKartObject::Draw(CRendererForGame* renderer, CVECTOR screen)
+void CKartObject::Draw(CRendererForGame* renderer, Camera camera)
 {
-	//extern CKartObject myKart;
-	extern Camera view;
-	int left = screen.X - width * 0.5;
-	int right = screen.X + width * 0.5;
-	int top = (WINDOW_HEIGHT - screen.Y) - height * 0.5;
-	int bottom = (WINDOW_HEIGHT - screen.Y) + height * 0.5;
+
+	extern CKartObject myKart;
+	CVECTOR movedCamPosition = myKart.pos - camera.centerPosition;
+	CVECTOR screenPosition = this->pos - movedCamPosition;
+	screenPosition = screenPosition.RotateCntClockwise(camera.angle);
+	screenPosition = screenPosition + movedCamPosition;
+
+	int left = screenPosition.X - width * 0.5;
+	int right = screenPosition.X + width * 0.5;
+	int top = (WINDOW_HEIGHT - screenPosition.Y) - height * 0.5;
+	int bottom = (WINDOW_HEIGHT - screenPosition.Y) + height * 0.5;
 	int textLength = strlen(name.c_str());
 
 	if (right < 0)
@@ -40,9 +45,10 @@ void CKartObject::Draw(CRendererForGame* renderer, CVECTOR screen)
 	POINT rotatedEdge[4];
 	for (int i = 0; i < 4; i++)
 	{
-		edge[i] = edge[i] - screen;
+		edge[i] = edge[i] - screenPosition;
+		//edge[i] = edge[i].RotateCntClockwise(angle - view.angle);
 		edge[i] = edge[i].RotateCntClockwise(angle);
-		edge[i] = edge[i] + screen;
+		edge[i] = edge[i] + screenPosition;
 
 		rotatedEdge[i] = { int(edge[i].X), int(edge[i].Y) };
 	}

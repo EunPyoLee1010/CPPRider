@@ -9,6 +9,6 @@ CBackBoardSuper::~CBackBoardSuper()
 {
 }
 
-void CBackBoardSuper::Draw(CRendererForGame* renderer, CVECTOR screen)
+void CBackBoardSuper::Draw(CRendererForGame* renderer, Camera camera)
 {
 }

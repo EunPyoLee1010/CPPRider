@@ -8,7 +8,7 @@ public:
 	CObjectSuper();
 	~CObjectSuper();
 
-	virtual void Draw(CRendererForGame* renderer, CVECTOR screen);
+	virtual void Draw(CRendererForGame* renderer, Camera camera);
 
 	CVECTOR pos;
 
