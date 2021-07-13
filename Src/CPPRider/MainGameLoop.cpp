@@ -25,7 +25,6 @@ CMainGameLoop::~CMainGameLoop()
 
 void CMainGameLoop::Initialize()
 {
-	loopFlag = true;
 	GDI()->CreateGDI();
 
 	updateEngineList.push_back(new CCollisionUpdateEngine());
@@ -34,17 +33,17 @@ void CMainGameLoop::Initialize()
 
 	backboardList.push_back(&map);
 
-	//int x = 100;
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	int intervel = 200;
-	//	otherKarts[i].pos.X = (x + intervel * i);
-	//	otherKarts[i].pos.Y = 250;
-	//	objList.push_back(&otherKarts[i]);
-	//}
+	int x = 50;
+	for (int i = 0; i < 4; i++)
+	{
+		int intervel = 100;
+		otherKarts[i].pos.X = (x + intervel * i);
+		otherKarts[i].pos.Y = 30;
+		objList.push_back(&otherKarts[i]);
+	}
 
-	myKart.pos.X = 250;
-	myKart.pos.Y = 250;
+	myKart.pos.X = 200;
+	myKart.pos.Y = 30;
 	myKart.name = "ÀºÇ¥";
 	objList.push_back(&myKart);
 

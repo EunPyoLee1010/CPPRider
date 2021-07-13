@@ -15,7 +15,7 @@ CObjectSuper::~CObjectSuper()
 {
 }
 
-void CObjectSuper::Draw(CRendererForGame* renderer,  Camera camera)
+void CObjectSuper::Draw(CRendererForGame* renderer, Camera camera)
 {
 }
 

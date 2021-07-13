@@ -14,11 +14,14 @@ void CStatusUpdateEngine::Update(CKartObject* obj)
 {
 	double radian = obj->angle * (PI / 180);
 	
-	CMapObject::mapContainer[int(obj->pos.Y)][int(obj->pos.X)] = 2;
+	if (obj->isDrift)
+	{
+		CMapObject::mapContainer[int(obj->pos.Y)][int(obj->pos.X)] = 2;
+		obj->isDrift = false;
+	}
 
 	obj->pos.X += obj->vel * sin(radian);
 	obj->pos.Y += obj->vel * cos(radian);
-	
 
 	CStatusObject::playerAngle = obj->angle;
 	CStatusObject::playerPosX = obj->pos.X;

@@ -1,6 +1,7 @@
 #pragma once
 #include "ObjectSuper.h"
 #include "RendererForGame.h"
+#include "camera.h"
 
 class CKartObject : public CObjectSuper
 {
@@ -13,6 +14,8 @@ public:
 	double vel;
 	double maxVel;
 	double acc;
+	bool isDrift;
+
 private:
 };
 

@@ -17,10 +17,6 @@ void CRenderer::Render()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기
 	extern Camera camera;		//centerposition와 angle을 알게됐다.
 	extern CKartObject myKart;
 
-
-
-	//CVECTOR camera(0 , 0);	//실제로 카메라에 나타나는 객체 위치
-
 	for (auto backObj : GameLoop()->backboardList)
 	{
 		//맵에 대한 카메라 변수 조절하고 Draw함수에서 for문 범위 정하기
@@ -29,17 +25,6 @@ void CRenderer::Render()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기
 
 	for (auto obj : GameLoop()->objList)
 	{
-		//if (camera.name != obj->name)
-		//{
-		//	camera = obj->pos - camera.objVector - movedCamVec;
-		//	camera = camera.RotateCntClockwise(camera.angle);
-		//	//카메라 회전 고민해보기
-		//	camera = camera + camera.objVector;
-		//}
-		//if (camera.name == obj->name)
-		//{
-		//	camera(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5);
-		//}
 		obj->Draw(this, camera);
 	}
 

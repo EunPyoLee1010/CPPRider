@@ -1,6 +1,7 @@
 #pragma once
 #include "RendererForGame.h"
 #include "vector.h"
+#include "camera.h"
 
 class CObjectSuper
 {

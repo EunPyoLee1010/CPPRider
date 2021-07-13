@@ -1,5 +1,7 @@
 #pragma once
 #include "BackBoardSuper.h"
+#include "camera.h"
+
 class CMapObject : public CBackBoardSuper
 {
 public:
@@ -10,5 +12,7 @@ public:
 
 	virtual void Draw(CRendererForGame* renderer, Camera camera);
 private:
+	int mapIndexWidth;
+	int mapIndexHeight;
 };
 

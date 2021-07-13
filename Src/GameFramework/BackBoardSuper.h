@@ -1,6 +1,7 @@
 #pragma once
 #include "RendererForGame.h"
 #include "vector.h"
+#include "camera.h"
 
 class CBackBoardSuper		//지금상황에서 맞지 않는 클래스
 {
