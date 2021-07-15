@@ -5,7 +5,10 @@ CKartObject::CKartObject() :
 	vel(0),
 	acc(0.1),
 	maxVel(1.5),
-	isDrift(false)
+	isDrift(false),
+	isBoost(false),
+	boosterCount(0),
+	boostGauge(0)
 {
 }
 
@@ -60,4 +63,24 @@ void CKartObject::Draw(CRendererForGame* renderer, Camera camera)
 
 	renderer->Polygon(rotatedEdge, RGB(0, 0, 255));
 	renderer->Text(edge[3].X - (textLength * 0.5) * 5, edge[3].Y + 5, RGB(0, 0, 0), name);
+	if (isBoost)
+	{
+		edge[0](left, bottom);
+		edge[1](right, bottom);
+		edge[2](right, bottom + 10);
+		edge[3](left, bottom + 10);
+
+		POINT rotatedEdge[4];
+		for (int i = 0; i < 4; i++)
+		{
+			edge[i] = edge[i] - newPosition;
+			edge[i] = edge[i].RotateCntClockwise(angle + camera.angle);
+			edge[i] = edge[i] + newPosition;
+
+			rotatedEdge[i] = { int(edge[i].X), int(edge[i].Y) };
+		}
+
+		renderer->Polygon(rotatedEdge, RGB(255, 0, 0));
+		isBoost = false;
+	}
 }

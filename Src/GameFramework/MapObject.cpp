@@ -7,8 +7,8 @@ CMapObject::CMapObject() :
 	mapIndexWidth(2),
 	mapIndexHeight(2)
 {
-	//std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider(Test)\\Src\\GameFramework\\MapList\\map1.txt";
-	std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	//std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
 	std::ifstream openFile;
 	std::istringstream ss;
 

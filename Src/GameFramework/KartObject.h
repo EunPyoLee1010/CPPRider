@@ -15,7 +15,9 @@ public:
 	double maxVel;
 	double acc;
 	bool isDrift;
-
+	bool isBoost;
+	int boosterCount;
+	double boostGauge;
 private:
 };
 

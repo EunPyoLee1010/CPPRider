@@ -48,9 +48,25 @@ int CKeyInputEngine::Query()
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 			myKart.angle += 0.5 * (myKart.vel / myKart.maxVel);
 
+		myKart.boostGauge += abs(0.5 *(myKart.vel / myKart.maxVel));
+		if (myKart.boostGauge >= 100)
+		{
+			myKart.boosterCount >= 2? myKart.boosterCount : myKart.boosterCount++;
+			myKart.boostGauge = 0;
+		}
+
 		myKart.vel *= 1.01;
 
 		myKart.isDrift = true;
+	}
+
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000) 
+	{
+		if (!myKart.boosterCount || myKart.isBoost)
+			return 0;
+		myKart.vel *= 1.5;
+		myKart.boosterCount--;
+		myKart.isBoost = true;
 	}
 
 	return nCount;
