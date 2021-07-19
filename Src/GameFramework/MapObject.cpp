@@ -7,8 +7,8 @@ CMapObject::CMapObject() :
 	mapIndexWidth(2),
 	mapIndexHeight(2)
 {
-	std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
-	//std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	//std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
+	std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
 	std::ifstream openFile;
 	std::istringstream ss;
 
@@ -92,4 +92,11 @@ void CMapObject::Draw(CRendererForGame* renderer, Camera camera)//이름을 의미있�
 			}
 		}
 	}
+}
+
+bool CMapObject::isCollide(CVECTOR position) 
+{
+	if (position.X < 0 || position.Y < 0 || position.X > 999 || position.Y > 999)
+		return true;
+	return mapContainer[int(position.Y)][int(position.X)];
 }

@@ -18,6 +18,7 @@ public:
 	bool isBoost;
 	int boosterCount;
 	double boostGauge;
+	int boostTime;
 private:
 };
 

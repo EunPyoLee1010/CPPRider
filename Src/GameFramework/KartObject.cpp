@@ -8,7 +8,8 @@ CKartObject::CKartObject() :
 	isDrift(false),
 	isBoost(false),
 	boosterCount(0),
-	boostGauge(0)
+	boostGauge(0),
+	boostTime(0)
 {
 }
 
@@ -63,7 +64,7 @@ void CKartObject::Draw(CRendererForGame* renderer, Camera camera)
 
 	renderer->Polygon(rotatedEdge, RGB(0, 0, 255));
 	renderer->Text(edge[3].X - (textLength * 0.5) * 5, edge[3].Y + 5, RGB(0, 0, 0), name);
-	if (isBoost)
+	if (isBoost)	//카메라 진동시키기 혹은 여러 발 발사해서 표현, 빗선을 그려서 속도감을 주기, 줌아웃 시켰다가 줌 인 하기
 	{
 		edge[0](left, bottom);
 		edge[1](right, bottom);
@@ -81,6 +82,5 @@ void CKartObject::Draw(CRendererForGame* renderer, Camera camera)
 		}
 
 		renderer->Polygon(rotatedEdge, RGB(255, 0, 0));
-		isBoost = false;
 	}
 }
