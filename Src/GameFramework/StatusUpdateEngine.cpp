@@ -26,8 +26,8 @@ void CStatusUpdateEngine::Update(CKartObject* obj)
 
 	if (obj->isBoost)//게임 시간에서 부스트 시작 시점과 -> 종료 시점 기록 -> 3초 차이를 GettickCount 3000
 	{
-		datetime start = now;
-		end = now;
+		//datetime start = now;
+		//end = now;
 		obj->boostTime++;
 		if (obj->boostTime > 300) {
 			obj->isBoost = false;

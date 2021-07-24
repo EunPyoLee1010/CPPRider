@@ -23,3 +23,7 @@ void CRendererForGame::Text(int left, int top, COLORREF rgb, std::string text)
 void CRendererForGame::Polygon(POINT* edges, COLORREF color)
 {
 }
+
+void CRendererForGame::Line(int left, int top, int right, int bottom, COLORREF color)
+{
+}

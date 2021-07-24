@@ -67,6 +67,14 @@ void CRenderer::Polygon(POINT* edges, COLORREF color)
 	::Polygon(hDCInstance.m_MemDC, edges, 4);
 }
 
+void CRenderer::Line(int left, int top, int right, int bottom, COLORREF color)
+{
+	PenHelper hPen(hDCInstance.m_MemDC, color);
+	BrushHelper hBrush(hDCInstance.m_MemDC, color);
+	::MoveToEx(hDCInstance.m_MemDC, left, top, NULL);
+	::LineTo(hDCInstance.m_MemDC, right, bottom);
+}
+
 
 CRenderer::CRenderer()
 {
