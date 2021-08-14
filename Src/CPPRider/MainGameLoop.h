@@ -12,6 +12,8 @@ public:
 	void StartLoop();
 	void Terminate();
 
+	static bool loopFlag;
+
 	static CMainGameLoop* getInstance()
 	{
 		static CMainGameLoop instance;
@@ -24,7 +26,7 @@ public:
 	std::vector<CUpdateEngineSuper*>updateEngineList;
 
 private:
-	bool loopFlag;
+	
 	CMainGameLoop();
 	~CMainGameLoop();
 };

@@ -19,6 +19,8 @@ public:
 	int boosterCount;
 	double boostGauge;
 	int boostTime;
+	int lapCount;
+	int lap;
 private:
 };
 

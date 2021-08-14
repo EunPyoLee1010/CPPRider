@@ -9,6 +9,7 @@ public:
 	static int playerPosX;
 	static int playerPosY;
 	static int playerAngle;
+	static int playerLaps;
 
 	virtual void Draw(CRendererForGame* renderer);
 };

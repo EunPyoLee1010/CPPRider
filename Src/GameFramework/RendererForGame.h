@@ -1,6 +1,9 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include "vector.h"
+
+POINT* RotateEdges(CVECTOR edge[], CVECTOR basePoint, int angle);
 
 class CRendererForGame
 {

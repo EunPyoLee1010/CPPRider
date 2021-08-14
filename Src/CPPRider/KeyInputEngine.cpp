@@ -43,10 +43,10 @@ int CKeyInputEngine::Query()
 	if (GetAsyncKeyState(VK_SHIFT) & 0x8000)
 	{
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-			myKart.angle -= 0.5 * (myKart.vel / myKart.maxVel);
+			myKart.angle -= 1.2 * (myKart.vel / myKart.maxVel);
 
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-			myKart.angle += 0.5 * (myKart.vel / myKart.maxVel);
+			myKart.angle += 1.2 * (myKart.vel / myKart.maxVel);
 
 		myKart.boostGauge += abs(0.5 *(myKart.vel / myKart.maxVel) * (sin(myKart.angle * PI / 180)));
 		if (myKart.boostGauge >= 100)
