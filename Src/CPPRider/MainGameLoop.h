@@ -10,6 +10,7 @@ class CMainGameLoop
 public:
 	void Initialize();
 	void StartLoop();
+	void SendTerminateSignal();
 	void Terminate();
 
 	static bool loopFlag;

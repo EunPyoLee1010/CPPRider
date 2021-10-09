@@ -156,6 +156,7 @@
     <ClInclude Include="StatusObject.h" />
     <ClInclude Include="StatusUpdateEngine.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="UpdateEngineSuper.h" />
     <ClInclude Include="vector.h" />
   </ItemGroup>

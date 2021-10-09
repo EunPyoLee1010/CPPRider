@@ -40,3 +40,15 @@ public:
 	~BrushHelper();
 };
 
+class FontHelper
+{
+private:
+public:
+	HDC hDC;
+	HFONT hFont;
+	HFONT hOldFont;
+	FontHelper(HDC hDC, int fontSize);
+	~FontHelper();
+
+};
+

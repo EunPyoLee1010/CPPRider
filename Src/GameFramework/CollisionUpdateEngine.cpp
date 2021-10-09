@@ -12,15 +12,21 @@ CCollisionUpdateEngine::~CCollisionUpdateEngine()
 void CCollisionUpdateEngine::Update(CKartObject* obj)
 {
 	double radian = obj->angle * PI / 180;
-	CVECTOR movePosition(obj->pos.X + obj->vel * cos(radian) * TIME_QUANTUM, obj->pos.Y + obj->vel * sin(radian) * TIME_QUANTUM);
-
 	extern CMapObject map;
-	if (map.isCollide(movePosition)) 
+
+	for (int y = int(obj->pos.Y + obj->vel * sin(radian) * TIME_QUANTUM) - 2; y < int(obj->pos.Y + obj->vel * sin(radian) * TIME_QUANTUM) + 2; y++)
 	{
-		obj->pos.X -= obj->vel * cos(radian);
-		obj->pos.Y -= obj->vel * sin(radian);
-		obj->pos.X = ceil(obj->pos.X);
-		obj->pos.Y = ceil(obj->pos.Y);
-		obj->vel *= -0.2;
+		for (int x = int(obj->pos.X + obj->vel * cos(radian) * TIME_QUANTUM) - 2; x < int(obj->pos.X + obj->vel * cos(radian) * TIME_QUANTUM) + 2; x++)
+		{
+			CVECTOR movePosition(x, y);
+			if (map.isCollide(movePosition))
+			{
+				obj->pos.X -= obj->vel * cos(radian);
+				obj->pos.Y -= obj->vel * sin(radian);
+				obj->pos.X = ceil(obj->pos.X);
+				obj->pos.Y = ceil(obj->pos.Y);
+				obj->vel *= -0.2;
+			}
+		}
 	}
 }

@@ -41,12 +41,10 @@ void HDCHelper::Flush(HDC hDC, POINT point)
 	::BitBlt(hDC, point.x, point.y, m_Rect.cx, m_Rect.cy, m_MemDC, 0, 0, SRCCOPY);
 }
 
-PenHelper::PenHelper(HDC hDC, COLORREF rgb)
+PenHelper::PenHelper(HDC hDC, COLORREF rgb) : hDC(hDC)
 {
 	hPen = CreatePen(PS_SOLID, 5, rgb);
-	hOldPen = (HPEN)::SelectObject(hDC, hPen);
-
-	this->hDC = hDC;
+	hOldPen = (HPEN)::SelectObject(this->hDC, hPen);
 }
 
 PenHelper::~PenHelper()
@@ -56,18 +54,30 @@ PenHelper::~PenHelper()
 }
 
 BrushHelper::BrushHelper(HDC hDC, COLORREF rgb) :
-	hDC(NULL),
+	hDC(hDC),
 	hBrush(NULL),
 	hOldBrush(NULL)
 {
 	hBrush = CreateSolidBrush(rgb);
-	hOldBrush = (HBRUSH)::SelectObject(hDC, hBrush);
-
-	this->hDC = hDC;
+	hOldBrush = (HBRUSH)::SelectObject(this->hDC, hBrush);
 }
 
 BrushHelper::~BrushHelper()
 {
-	SelectObject(hDC, hOldBrush);
+	SelectObject(this->hDC, hOldBrush);
 	DeleteObject(hBrush);
 }
+
+FontHelper::FontHelper(HDC hDC, int fontSize) :
+	hDC(hDC)
+{
+	hFont = CreateFont(fontSize,0,0,0,0,0,0,0,HANGEUL_CHARSET,0,0,0,VARIABLE_PITCH | FF_ROMAN,TEXT("±Ã¼­"));
+	hOldFont = (HFONT)SelectObject(this->hDC, hFont);
+}
+
+FontHelper::~FontHelper()
+{
+	SelectObject(this->hDC, hOldFont);
+	DeleteObject(hFont);
+}
+

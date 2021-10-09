@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <math.h>
+#include "struct.h"
 
 #define PI	3.14159265358979323846
 
@@ -94,5 +95,19 @@ struct CVECTOR
 	double DotProduct(CVECTOR& dotProdVec) 
 	{
 		return (X * dotProdVec.X) + (Y * dotProdVec.Y);
+	}
+
+
+	ENUM_MAP_SECTION getMapSection() 
+	{
+		if ((X > 999 || X < 0) || (Y > 999 || Y < 0)) 
+		{
+			return MAP_SECTION_OUTSIDE;
+		}
+		if ((X > 300 && X < 600) && (Y > 200 && Y < 800)) 
+		{
+			return MAP_SECTION_WALL;
+		}
+		return MAP_SECTION_TRACK;
 	}
 };

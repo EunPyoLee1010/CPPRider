@@ -2,6 +2,7 @@
 #include "MapObject.h"
 #include <fstream>
 #include <sstream>
+#include "struct.h"
 
 CMapObject::CMapObject() :
 	mapIndexWidth(2),
@@ -9,6 +10,7 @@ CMapObject::CMapObject() :
 {
 	//std::string mapPath = "D:\\이은표\\대외활동\\BOB\\전상현 멘토님 프로젝트\\CPPRider\\Src\\GameFramework\\MapList\\map1.txt";
 	std::string mapPath = "C:\\Users\\dldms\\Desktop\\프로젝트 개발 폴더\\CPPRider\\Src\\GameFramework\\MapList\\map2.txt";
+	//std::string mapPath = "map2.txt";
 	std::ifstream openFile;
 	std::istringstream ss;
 
@@ -102,8 +104,13 @@ void CMapObject::Draw(CRendererForGame* renderer, Camera camera)//이름을 의미있�
 						renderer->Polygon(rotatedEdge, RGB(0, 0, 0));
 					if (mapContainer[y][x] == 2)
 						renderer->Polygon(rotatedEdge, RGB(0, 255, 0));
-					if (mapContainer[y][x] > 2)
-						renderer->Polygon(rotatedEdge, RGB(255, 0, 255));
+					if (mapContainer[y][x] == 6) 
+					{
+						if((x % 5) == 0 && (x / 5) % 2 == 0)
+							renderer->Polygon(rotatedEdge, RGB(0, 0, 0));
+						if ((x % 5) == 0 && (x / 5) % 2 == 1)
+							renderer->Polygon(rotatedEdge, RGB(255, 255, 255));
+					}
 				}
 
 			}
@@ -114,8 +121,12 @@ void CMapObject::Draw(CRendererForGame* renderer, Camera camera)//이름을 의미있�
 bool CMapObject::isCollide(CVECTOR position) 
 {
 	CVECTOR intPosition(int(position.X), int(position.Y));
-	if (intPosition.X < 0 || intPosition.Y < 0 || intPosition.X > 999 || intPosition.Y > 999)
+	//if (intPosition.X < 0 || intPosition.Y < 0 || intPosition.X > 999 || intPosition.Y > 999)
+	//	return true;
+	if (intPosition.getMapSection() != MAP_SECTION_TRACK) 
+	{
 		return true;
+	}
 	if (mapContainer[int(intPosition.Y)][int(intPosition.X)] == 1) 
 	{
 		printf("Collided at %f, %f\n", intPosition.X, intPosition.Y);

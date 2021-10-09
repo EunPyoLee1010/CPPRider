@@ -51,6 +51,8 @@ void CMainGameLoop::Initialize()
 
 	frontboardList.push_back(new CStatusObject());
 
+	GDI()->RenderGameStart();
+
 	CMainGameLoop::loopFlag = true;
 }
 
@@ -63,13 +65,18 @@ void CMainGameLoop::StartLoop()
 		for (auto engine : updateEngineList)
 			engine->Update(&myKart);
 
-		GDI()->Render();
+		GDI()->RenderGameLoop();
 
 		Sleep(TIME_QUANTUM);
 	}
 }
 
-void CMainGameLoop::Terminate()
+void CMainGameLoop::SendTerminateSignal()
 {
 	loopFlag = false;
+}
+
+void CMainGameLoop::Terminate()
+{
+	GDI()->RenderGameEnd();
 }

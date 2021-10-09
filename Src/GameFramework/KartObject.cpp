@@ -69,9 +69,8 @@ void CKartObject::Draw(CRendererForGame* renderer, Camera camera)
 
 	POINT rotatedEdge[4];
 	memcpy(rotatedEdge, RotateEdges(edge, newPosition, angle + camera.angle), sizeof(rotatedEdge));
-
 	renderer->Polygon(rotatedEdge, RGB(0, 0, 255));
-	renderer->Text(edge[3].X - (textLength * 0.5) * 5, edge[3].Y + 5, RGB(0, 0, 0), name);
+	renderer->Text(edge[3].X - (textLength * 0.5) * 5, edge[3].Y + 5, RGB(0, 0, 0), 15, name);
 	if (isBoost)	//카메라 진동시키기 혹은 여러 발 발사해서 표현, 빗선을 그려서 속도감을 주기, 줌아웃 시켰다가 줌 인 하기
 	{
 		if (boostTime % 2 == 0) {

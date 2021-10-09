@@ -44,7 +44,7 @@ void CStatusUpdateEngine::Update(CKartObject* obj)
 			obj->lapCount++;
 		}
 		if (obj->lapCount == 6) { obj->lap++; obj->lapCount = 2; }
-		if (obj->lap > CMapObject::laps) CMainGameLoop::loopFlag = false;
+		if (obj->lap > CMapObject::laps) GameLoop()->SendTerminateSignal();
 		
 		printf("obj's lapCount : %d, map: %d\n", obj->lapCount, CMapObject::mapContainer[int(obj->pos.Y)][int(obj->pos.X)]);
 	}

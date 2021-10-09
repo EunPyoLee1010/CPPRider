@@ -10,7 +10,20 @@ void CRenderer::CreateGDI()
 	CreateThread(NULL, 0, CreateGDIThreadCaller, this, 0, 0);
 }
 
-void CRenderer::Render()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기법이 변경될 수 있는 엔진
+void CRenderer::RenderGameStart()
+{
+	for (int countDown = 4; countDown > 0; countDown--) {
+		hDCInstance.Clear();
+		this->Text(WINDOW_WIDTH * 0.5 - 15, WINDOW_HEIGHT * 0.5 - 50, RGB(0,0,0), 50,std::to_string(countDown));
+		HDC hDC = GetDC(hDCInstance.m_hWnd);
+		hDCInstance.Flush(hDC, { 0, 0 });
+		::ReleaseDC(hDCInstance.m_hWnd, hDC);
+
+		Sleep(1000);
+	}
+}
+
+void CRenderer::RenderGameLoop()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기법이 변경될 수 있는 엔진
 {
 	hDCInstance.Clear();
 
@@ -38,6 +51,15 @@ void CRenderer::Render()		//애니메이션 렌더링, 실사 렌더링 -> 코드 한줄로 연출기
 	::ReleaseDC(hDCInstance.m_hWnd, hDC);
 }
 
+void CRenderer::RenderGameEnd()
+{
+	this->Text(WINDOW_WIDTH * 0.5 - 10, WINDOW_HEIGHT * 0.5 - 20, RGB(0, 0, 0), 50,"GOAL!");
+	HDC hDC = GetDC(hDCInstance.m_hWnd);
+	hDCInstance.Flush(hDC, { 0, 0 });
+	::ReleaseDC(hDCInstance.m_hWnd, hDC);
+	while (!(GetAsyncKeyState(VK_RETURN) & 0x8000));
+}
+
 void CRenderer::Rectangle(int left, int top, int right, int bottom, COLORREF rgb)
 {
 	PenHelper hPen(hDCInstance.m_MemDC, rgb);
@@ -52,9 +74,10 @@ void CRenderer::Ellipse(int left, int top, int right, int bottom, COLORREF rgb)
 	::Ellipse(hDCInstance.m_MemDC, left, top, right, bottom);
 }
 
-void CRenderer::Text(int left, int top, COLORREF rgb, std::string text)
+void CRenderer::Text(int left, int top, COLORREF rgb,int fontSize, std::string text)
 {
 	PenHelper hPen(hDCInstance.m_MemDC, rgb);
+	FontHelper hFont(hDCInstance.m_MemDC, fontSize);
 	::SetBkMode(hDCInstance.m_MemDC, TRANSPARENT);
 	::SetTextAlign(hDCInstance.m_MemDC, TA_CENTER);
 	::TextOutA(hDCInstance.m_MemDC, left, top, text.c_str(), strlen(text.c_str()));
